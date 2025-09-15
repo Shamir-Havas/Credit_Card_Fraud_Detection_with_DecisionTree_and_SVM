@@ -1,109 +1,130 @@
-<b>💳 Credit Card Fraud Detection using Decision Tree & SVM <br>
+💳 Credit Card Fraud Detection with Decision Tree & SVM
+📖 Overview
 
-📖 Overview</b>
+This project demonstrates credit card fraud detection using two classification algorithms: Decision Tree and Support Vector Machine (SVM). It focuses on handling highly imbalanced datasets, performing exploratory data analysis (EDA), and comparing model performance using ROC-AUC scores.
 
-This project applies Decision Tree and Support Vector Machine (SVM) classifiers to detect fraudulent credit card transactions in a highly imbalanced dataset. Fraud detection is essential to reduce financial losses and strengthen trust in digital banking.
+Recruiters and reviewers can quickly evaluate your skills in:
 
-<b>🎯 Objectives</b>
+Data preprocessing & scaling
 
-Detect fraudulent transactions with high accuracy despite severe class imbalance.
+Exploratory data analysis with visualizations
 
-Compare Decision Tree (interpretability) vs SVM (generalization).
+Training and evaluating machine learning models
 
-Optimize for recall (catching frauds) while minimizing false alarms.
+Addressing class imbalance with sample weighting
 
-<b>📊 Dataset</b>
+Communicating results professionally
 
-Source: Kaggle Credit Card Fraud Dataset
+📊 Dataset
 
-Size: 284,807 transactions with 492 fraud cases (0.17%)
+Source: Credit Card Fraud Dataset
 
-Features: 28 anonymized PCA components + Amount + Time
+Features: Anonymized principal components (V1–V28), Time, and Amount.
 
-<b>Target Variable:</b>
+Target: Class (1 = fraud, 0 = non-fraud).
 
-0 → Legitimate transaction
+Challenge: Imbalanced classes — fraudulent transactions are <1% of total.
 
-1 → Fraudulent transaction
+🧭 Objectives
 
-<b>🚀 Project Workflow</b>
+Load and preprocess the dataset.
 
-Data Preprocessing – scaling, cleaning, and class imbalance handling.
+Perform EDA to visualize and understand the data.
 
-Exploratory Data Analysis (EDA) – fraud vs non-fraud patterns across features.
+Train and evaluate Decision Tree & SVM classifiers.
 
-Model Training – Decision Tree & SVM classifiers.
+Compare model performance using ROC-AUC scores.
 
-Evaluation – precision, recall, F1-score, ROC-AUC.
+Discuss findings and potential improvements.
 
-Result Comparison – interpretability vs generalization trade-offs.
+⚙️ Installation
 
-<b>✅ Results</b>
+Clone the repository
 
-Decision Tree
-
-Strength: Highly interpretable (clear rules).
-
-Limitation: Overfits on imbalanced data.
-
-SVM
-
-Strength: Strong generalization, robust with class weights.
-
-Recall: ~94% (critical for fraud detection).
-
-ROC-AUC: ~0.96
-
-<b>📌 Key Insights</b>
-
-Fraudulent transactions often mimic normal amounts, so transaction size alone isn’t enough.
-
-Time-of-day anomalies helped separate frauds from legitimate activity.
-
-SVM prioritized catching frauds (high recall) but flagged more false positives.
-
-Decision Tree offered interpretable rules, valuable for compliance teams.
-
-<b>🔮 Future Improvements</b>
-
-Apply ensemble methods (Random Forest, XGBoost, LightGBM).
-
-Use SMOTE/undersampling for better class balance.
-
-Explore deep learning (autoencoders, LSTMs) for anomaly detection.
-
-Deploy as a real-time fraud detection service (API).
-
-<b>🛠️ Tech Stack</b>
-
-Languages: Python
-
-Libraries: Pandas, NumPy, Scikit-learn, Matplotlib
-
-Concepts: Class imbalance handling, ROC analysis, interpretability vs generalization
-
-<b>▶️ Usage</b>
-
-Install dependencies:
-
-pip install pandas numpy matplotlib scikit-learn
+git clone https://github.com/Shamir-Havas/Credit_Card_Fraud_Detection_with_DecisionTree_and_SVM.git
+cd Credit_Card_Fraud_Detection_with_DecisionTree_and_SVM
 
 
-Run the notebook:
+Install dependencies
 
-jupyter notebook Credit_Card_Fraud_Detection_with_DecisionTree_and_SVM.ipynb
+pip install -r requirements.txt
 
-## 📈 Model Performance  
 
-Confusion Matrix (Decision Tree):  
-![Decision Tree Confusion Matrix](images/confusion_matrix_tree.png)  
+Run the notebook or script
 
-Confusion Matrix (SVM):  
-![SVM Confusion Matrix](images/confusion_matrix_svm.png)  
+jupyter notebook Credit_Card_Fraud_Detection.ipynb
+# or
+python fraud_detection_with_images.py
 
-ROC Curve Comparison (SVM vs Decision Tree):  
-![ROC Curve](images/roc_curve.png)  
+🔎 Exploratory Data Analysis (EDA)
+Class Imbalance
 
-Feature Importance (Decision Tree):  
-![Feature Importance](images/feature_importance.png)  
+The dataset is heavily skewed toward non-fraudulent transactions:
 
+Feature Correlation
+
+Correlation between features and fraud occurrence:
+
+🤖 Model Training
+Decision Tree Classifier
+
+Algorithm: DecisionTreeClassifier(max_depth=4, random_state=35)
+
+Handling Imbalance: Used compute_sample_weight('balanced').
+
+Advantage: Easy interpretability.
+
+Support Vector Machine (SVM)
+
+Algorithm: LinearSVC(class_weight='balanced', random_state=31, loss='hinge')
+
+Advantage: Strong generalization on imbalanced data.
+
+📈 Model Evaluation
+ROC-AUC Scores
+Decision Tree ROC-AUC score : 0.939  
+SVM ROC-AUC score          : 0.986
+
+ROC Curve Comparison
+
+The SVM outperformed the Decision Tree, indicating better detection of fraudulent transactions.
+
+✅ Key Takeaways
+
+Fraud detection datasets are highly imbalanced, requiring careful weighting or resampling.
+
+SVM provided superior performance (higher ROC-AUC), while Decision Trees are easier to explain to non-technical stakeholders.
+
+Visualizations (pie charts, correlation plots, ROC curves) provide insight into the data and model performance.
+
+🚀 Future Improvements
+
+Implement ensemble methods (Random Forest, XGBoost) for improved performance.
+
+Use SMOTE or advanced resampling to address imbalance.
+
+Add metrics like Precision-Recall curves for more comprehensive evaluation.
+
+Deploy the model via Flask or Streamlit for real-time fraud detection demos.
+
+Automate hyperparameter tuning using GridSearchCV or Optuna.
+
+📂 Repository Structure
+├── Credit_Card_Fraud_Detection.ipynb   # Main notebook  
+├── fraud_detection_with_images.py      # Script version with image saving  
+├── images/                             # Saved plots for README  
+│   ├── class_imbalance.png  
+│   ├── feature_correlation.png  
+│   └── roc_comparison.png  
+├── requirements.txt                    # Dependencies  
+└── README.md                           # Project documentation  
+
+🏆 Skills Demonstrated
+
+Python: Pandas, NumPy, Matplotlib, Scikit-learn
+
+Machine Learning: Decision Tree, SVM, handling imbalanced data
+
+Data Visualization: Pie charts, correlation plots, ROC curves
+
+Software Engineering: Clean project structure, reproducibility, and documentation
