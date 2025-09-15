@@ -1,110 +1,151 @@
-# Credit Card Fraud Detection with Decision Tree & SVM
+# 💳 Credit Card Fraud Detection with Decision Tree & SVM
 
-## Project Overview
-This project builds a machine learning pipeline to detect fraudulent credit card transactions using Decision Tree and SVM classifiers. Handling imbalanced data (fraud is rare), evaluating models via ROC-AUC, confusion matrices, and classification metrics.
+## 📌 Project Overview
+This project demonstrates how to detect fraudulent credit card transactions using two machine learning classifiers:
+- **Decision Tree** → interpretable, rule-based learning
+- **Support Vector Machine (SVM)** → better generalization, handles imbalance with class weights
 
----
-
-## 📝 Objectives
-- Perform Exploratory Data Analysis (EDA) to understand patterns and class imbalance  
-- Preprocess data (standardization, normalization, train/test split, handling class imbalance)  
-- Train & compare two models: Decision Tree (interpretable) vs. SVM (with class balancing)  
-- Evaluate with metrics: Accuracy, Precision, Recall, F1-Score, ROC-AUC  
-- Suggest future improvements  
+We analyze the dataset, visualize key patterns, train the models, and compare their performance.
 
 ---
 
-## 📁 Dataset
-- ~284,807 transactions, 31 features including anonymized PCA features and `Amount`, `Time`.  
-- Severe class imbalance (~0.2% fraud vs ~99.8% non-fraud).  
+## 🎯 Objectives
+- Load and preprocess the dataset  
+- Perform Exploratory Data Analysis (EDA)  
+- Train classification models (Decision Tree & SVM)  
+- Evaluate and compare model performance  
+- Discuss results and potential improvements  
+
+---
+
+## 📂 Dataset
+- **Source**: [Credit Card Fraud dataset](https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-ML0101EN-SkillsNetwork/labs/Module%203/data/creditcard.csv)  
+- **Shape**: 284,807 transactions × 31 features  
+- **Target**: `Class` (0 = non-fraud, 1 = fraud)  
+- **Class imbalance**: ~99.8% non-fraud vs ~0.2% fraud  
 
 ---
 
 ## 🔍 Exploratory Data Analysis (EDA)
 
 ### Fraud Class Distribution  
-Shows the imbalance between non-fraud and fraud transactions.  
-![Fraud Class Distribution](Boxplot of Transaction Amounts by Class.png)  
+The dataset is extremely imbalanced.  
+![Fraud Class Distribution](Fraud%20Class%20Distribution.png)
 
 ### Correlation of Features with Fraud  
-Bar plot of how each feature correlates with the `Class` label.  
-![Correlation of Features with Fraud Class](Correlation of Features with Fraud Class.png)  
+Horizontal bar plot showing feature correlations with the fraud class.  
+![Correlation of Features with Fraud Class](Correlation%20of%20Features%20with%20Fraud%20Class.png)
 
 ### Transaction Amount Distribution  
-How amounts are distributed overall — heavy skew toward smaller values.  
-![Transaction Amount Distribution](Transaction Amount Distribution.png)  
+Most transactions are of very small amounts.  
+![Transaction Amount Distribution](Transaction%20Amount%20Distribution.png)
 
 ### Transaction Amount by Class  
-Comparison of transaction amount distributions by class (fraud vs non-fraud).  
-![Boxplot of Transaction Amounts by Class](Boxplot of Transaction Amounts by Class.png)  
+Fraudulent transactions tend to have different distribution patterns.  
+![Boxplot of Transaction Amounts by Class](Boxplot%20of%20Transaction%20Amounts%20by%20Class.png)
 
 ### Feature Correlation Heatmap  
-Full feature correlation matrix — helps understand multicollinearity or redundancies.  
-![Feature Correlation Heatmap](Feature Correlation Heatmap.png)  
+Visual correlation among all features.  
+![Feature Correlation Heatmap](Feature%20Correlation%20Heatmap.png)
 
 ---
 
-## ⚙️ Model Training & Evaluation
-
-### Decision Tree
-
-- **ROC-AUC Score**: 0.939  
-- **Confusion Matrix:**  
-  ![Decision Tree Evaluation Results](Decision Tree Evaluation Results.png)  
-
-- **Classification Report:**  
-precision recall f1-score support
-
-0.0 … … … …
-1.0 … … … …
-
-
-### SVM (LinearSVC, class_weight='balanced')
-
-- **ROC-AUC Score**: 0.986  
-- **Confusion Matrix:**  
-  ![SVM Evaluation Results](SVM Evaluation Results.png)  
-
-- **Classification Report:**  
-
-precision recall f1-score support
-
-0.0 … … … …
-1.0 … … … …
-
+## ⚙️ Data Preprocessing
+- Standardized features with `StandardScaler`  
+- Normalized data with `L1` norm  
+- Train-test split (70–30)  
+- Applied sample weights to balance class distribution  
 
 ---
 
-## 💡 Key Insights & Conclusion
+## 🤖 Model Training
+- **Decision Tree Classifier** (max_depth=4, with class weights)  
+- **Linear SVM** (`LinearSVC`, `class_weight='balanced'`, hinge loss)  
 
-- Accuracy alone is misleading due to class imbalance.  
-- Decision Tree gives interpretability but lower recall for fraud class.  
-- SVM improves recall for fraud, though precision is very low → many false positives.  
+---
+
+## 📊 Model Evaluation
+
+### ROC-AUC Scores
+- **Decision Tree**: 0.939  
+- **SVM**: 0.986  
+
+---
+
+### Confusion Matrices (Side-by-Side)
+
+<div align="center">
+
+| Decision Tree | SVM |
+|--------------|-----|
+| ![Decision Tree Evaluation Results](Decision%20Tree%20Evaluation%20Results.png) | ![SVM Evaluation Results](SVM%20Evaluation%20Results.png) |
+
+</div>
+
+---
+
+### Classification Reports
+
+<details>
+<summary>📑 Click to expand reports</summary>
+
+**Decision Tree**
+markdown
+Copy code
+           precision    recall  f1-score   support
+     0.0       1.00      0.97      0.98     85307
+     1.0       0.04      0.88      0.07       136
+accuracy                           0.97     85443
+macro avg 0.52 0.92 0.53 85443
+weighted avg 1.00 0.97 0.98 85443
+
+markdown
+Copy code
+
+**SVM**
+markdown
+Copy code
+           precision    recall  f1-score   support
+     0.0       1.00      0.83      0.91     85307
+     1.0       0.01      0.98      0.02       136
+accuracy                           0.83     85443
+macro avg 0.50 0.90 0.46 85443
+weighted avg 1.00 0.83 0.91 85443
+
+bash
+Copy code
+
+</details>
+---
+## ✅ Key Insights & Conclusion
+- Accuracy is misleading due to **class imbalance** → ROC-AUC is a more reliable metric.  
+- **Decision Tree**: good interpretability, moderate recall.  
+- **SVM**: very high recall (detects almost all frauds), but very poor precision (many false positives).  
+- **Best model here**: SVM (higher ROC-AUC), though practical deployment requires balancing recall vs precision.  
 
 ---
 
 ## 🚀 Future Work
-
-- Use ensemble methods (Random Forest, XGBoost)  
-- Try resampling techniques (SMOTE, ADASYN)  
-- Hyperparameter tuning (GridSearchCV, RandomSearchCV)  
-- Explore other algorithms (anomaly detection, neural networks)  
+- Explore ensemble models (Random Forest, XGBoost, LightGBM)  
+- Use resampling techniques (SMOTE, undersampling, oversampling)  
+- Hyperparameter tuning with GridSearch / RandomSearch  
+- Try anomaly detection & deep learning methods  
 
 ---
 
-## 🧾 File Structure
+## 📸 Visuals
+All plots are stored in this repository.  
+To add new figures:  
+1. Save in PNG format.  
+2. Place them in the root folder (or `images/` if you create one).  
+3. Reference with:  
+```markdown
+![Title](images/filename.png)
+yaml
+Copy code
 
+---
 
-.
-├── images/
-│ ├── Fraud Class Distribution.png
-│ ├── Correlation of Features with Fraud Class.png
-│ ├── Transaction Amount Distribution.png
-│ ├── Boxplot of Transaction Amounts by Class.png
-│ ├── Feature Correlation Heatmap.png
-│ ├── Decision Tree Evaluation Results.png
-│ ├── SVM Evaluation Results.png
-│ └── …
-├── Credit_Card_Fraud_Detection_with_DecisionTree_and_SVM.ipynb
-├── README.md
-└── …
+👉 This version will display all your screenshots **inline in the README**, with captions and structure.  
+
+Would you like me to also **make the confusion matrices appear side-by-side** (Decision Tree vs SVM) in
