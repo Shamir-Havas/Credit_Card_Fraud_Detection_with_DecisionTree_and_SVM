@@ -1,59 +1,110 @@
-Credit Card Fraud Detection 🚨💳
+# Credit Card Fraud Detection with Decision Tree & SVM
 
-📌 Project Overview
+## Project Overview
+This project builds a machine learning pipeline to detect fraudulent credit card transactions using Decision Tree and SVM classifiers. Handling imbalanced data (fraud is rare), evaluating models via ROC-AUC, confusion matrices, and classification metrics.
 
-This project focuses on detecting fraudulent credit card transactions using Machine Learning techniques. The dataset contains anonymized transaction features with a binary fraud label (fraudulent vs. non-fraudulent).
+---
 
-The goal is to build, evaluate, and compare models that can effectively identify fraud while handling severe class imbalance.
+## 📝 Objectives
+- Perform Exploratory Data Analysis (EDA) to understand patterns and class imbalance  
+- Preprocess data (standardization, normalization, train/test split, handling class imbalance)  
+- Train & compare two models: Decision Tree (interpretable) vs. SVM (with class balancing)  
+- Evaluate with metrics: Accuracy, Precision, Recall, F1-Score, ROC-AUC  
+- Suggest future improvements  
 
-🎯 Objectives
+---
 
-Perform Exploratory Data Analysis (EDA) to understand patterns and class imbalance.
+## 📁 Dataset
+- ~284,807 transactions, 31 features including anonymized PCA features and `Amount`, `Time`.  
+- Severe class imbalance (~0.2% fraud vs ~99.8% non-fraud).  
 
-Apply data preprocessing (standardization, normalization, train-test split, class balancing).
+---
 
-Train and compare two machine learning models:
+## 🔍 Exploratory Data Analysis (EDA)
 
-Decision Tree (max depth = 4)
+### Fraud Class Distribution  
+Shows the imbalance between non-fraud and fraud transactions.  
+![Fraud Class Distribution](Boxplot of Transaction Amounts by Class.png)  
 
-Support Vector Machine (SVM) with class balancing.
+### Correlation of Features with Fraud  
+Bar plot of how each feature correlates with the `Class` label.  
+![Correlation of Features with Fraud Class](Correlation of Features with Fraud Class.png)  
 
-Evaluate models on accuracy, precision, recall, and F1-score.
+### Transaction Amount Distribution  
+How amounts are distributed overall — heavy skew toward smaller values.  
+![Transaction Amount Distribution](Transaction Amount Distribution.png)  
 
-Discuss results and highlight areas for improvement.
+### Transaction Amount by Class  
+Comparison of transaction amount distributions by class (fraud vs non-fraud).  
+![Boxplot of Transaction Amounts by Class](Boxplot of Transaction Amounts by Class.png)  
 
-🔬 Tools & Technologies
+### Feature Correlation Heatmap  
+Full feature correlation matrix — helps understand multicollinearity or redundancies.  
+![Feature Correlation Heatmap](Feature Correlation Heatmap.png)  
 
-Python (NumPy, Pandas, Matplotlib, Seaborn)
+---
 
-Scikit-learn (DecisionTreeClassifier, SVM, evaluation metrics)
+## ⚙️ Model Training & Evaluation
 
-Data Visualization (EDA plots to highlight fraud imbalance)
+### Decision Tree
 
-📊 Key Insights
+- **ROC-AUC Score**: 0.939  
+- **Confusion Matrix:**  
+  ![Decision Tree Evaluation Results](Decision Tree Evaluation Results.png)  
 
-The dataset is highly imbalanced (fraud cases are very rare).
+- **Classification Report:**  
+precision recall f1-score support
 
-Decision Tree provided interpretable rules but risked underfitting with shallow depth.
+0.0 … … … …
+1.0 … … … …
 
-SVM handled class imbalance better, showing improved recall on fraud detection.
 
-Balancing techniques improved detection of minority fraud cases.
+### SVM (LinearSVC, class_weight='balanced')
 
-🚀 Results
+- **ROC-AUC Score**: 0.986  
+- **Confusion Matrix:**  
+  ![SVM Evaluation Results](SVM Evaluation Results.png)  
 
-Decision Tree achieved quick training but limited recall.
+- **Classification Report:**  
 
-SVM delivered better fraud detection performance at the cost of higher computation.
+precision recall f1-score support
 
-Highlighted the importance of class balancing and careful choice of metrics (recall > accuracy).
+0.0 … … … …
+1.0 … … … …
 
-📌 Future Improvements
 
-Experiment with ensemble methods (Random Forest, XGBoost).
+---
 
-Apply SMOTE/ADASYN for synthetic oversampling.
+## 💡 Key Insights & Conclusion
 
-Use deep learning (ANN, Autoencoders) for anomaly detection.
+- Accuracy alone is misleading due to class imbalance.  
+- Decision Tree gives interpretability but lower recall for fraud class.  
+- SVM improves recall for fraud, though precision is very low → many false positives.  
 
-Optimize hyperparameters with GridSearchCV / RandomSearchCV
+---
+
+## 🚀 Future Work
+
+- Use ensemble methods (Random Forest, XGBoost)  
+- Try resampling techniques (SMOTE, ADASYN)  
+- Hyperparameter tuning (GridSearchCV, RandomSearchCV)  
+- Explore other algorithms (anomaly detection, neural networks)  
+
+---
+
+## 🧾 File Structure
+
+
+.
+├── images/
+│ ├── Fraud Class Distribution.png
+│ ├── Correlation of Features with Fraud Class.png
+│ ├── Transaction Amount Distribution.png
+│ ├── Boxplot of Transaction Amounts by Class.png
+│ ├── Feature Correlation Heatmap.png
+│ ├── Decision Tree Evaluation Results.png
+│ ├── SVM Evaluation Results.png
+│ └── …
+├── Credit_Card_Fraud_Detection_with_DecisionTree_and_SVM.ipynb
+├── README.md
+└── …
