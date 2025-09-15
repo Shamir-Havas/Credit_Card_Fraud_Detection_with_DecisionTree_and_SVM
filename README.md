@@ -93,12 +93,17 @@ Run the notebook:
 
 jupyter notebook Credit_Card_Fraud_Detection_with_DecisionTree_and_SVM.ipynb
 
-📈 Visual Examples
+## 📈 Model Performance  
 
-(add these plots if available in your repo)
+Confusion Matrix (Decision Tree):  
+![Decision Tree Confusion Matrix](images/confusion_matrix_tree.png)  
 
-Confusion Matrix (fraud vs non-fraud)
+Confusion Matrix (SVM):  
+![SVM Confusion Matrix](images/confusion_matrix_svm.png)  
 
-ROC Curve (Decision Tree vs SVM)
+ROC Curve Comparison (SVM vs Decision Tree):  
+![ROC Curve](images/roc_curve.png)  
 
-Feature impact visualizations
+Feature Importance (Decision Tree):  
+![Feature Importance](images/feature_importance.png)  
+
