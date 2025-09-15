@@ -133,19 +133,3 @@ Copy code
 
 ---
 
-## 📸 Visuals
-All plots are stored in this repository.  
-To add new figures:  
-1. Save in PNG format.  
-2. Place them in the root folder (or `images/` if you create one).  
-3. Reference with:  
-```markdown
-![Title](images/filename.png)
-yaml
-Copy code
-
----
-
-👉 This version will display all your screenshots **inline in the README**, with captions and structure.  
-
-Would you like me to also **make the confusion matrices appear side-by-side** (Decision Tree vs SVM) in
