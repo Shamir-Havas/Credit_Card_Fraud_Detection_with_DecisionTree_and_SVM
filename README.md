@@ -1,9 +1,10 @@
-💳 Credit Card Fraud Detection using Decision Tree & SVM
-📖 Overview
+<b>💳 Credit Card Fraud Detection using Decision Tree & SVM <br>
+
+📖 Overview</b>
 
 This project applies Decision Tree and Support Vector Machine (SVM) classifiers to detect fraudulent credit card transactions in a highly imbalanced dataset. Fraud detection is essential to reduce financial losses and strengthen trust in digital banking.
 
-🎯 Objectives
+<b>🎯 Objectives</b>
 
 Detect fraudulent transactions with high accuracy despite severe class imbalance.
 
@@ -11,7 +12,7 @@ Compare Decision Tree (interpretability) vs SVM (generalization).
 
 Optimize for recall (catching frauds) while minimizing false alarms.
 
-📊 Dataset
+<b>📊 Dataset</b>
 
 Source: Kaggle Credit Card Fraud Dataset
 
@@ -19,13 +20,13 @@ Size: 284,807 transactions with 492 fraud cases (0.17%)
 
 Features: 28 anonymized PCA components + Amount + Time
 
-Target Variable:
+<b>Target Variable:</b>
 
 0 → Legitimate transaction
 
 1 → Fraudulent transaction
 
-🚀 Project Workflow
+<b>🚀 Project Workflow</b>
 
 Data Preprocessing – scaling, cleaning, and class imbalance handling.
 
@@ -37,7 +38,7 @@ Evaluation – precision, recall, F1-score, ROC-AUC.
 
 Result Comparison – interpretability vs generalization trade-offs.
 
-✅ Results
+<b>✅ Results</b>
 
 Decision Tree
 
@@ -53,7 +54,7 @@ Recall: ~94% (critical for fraud detection).
 
 ROC-AUC: ~0.96
 
-📌 Key Insights
+<b>📌 Key Insights</b>
 
 Fraudulent transactions often mimic normal amounts, so transaction size alone isn’t enough.
 
@@ -63,7 +64,7 @@ SVM prioritized catching frauds (high recall) but flagged more false positives.
 
 Decision Tree offered interpretable rules, valuable for compliance teams.
 
-🔮 Future Improvements
+<b>🔮 Future Improvements</b>
 
 Apply ensemble methods (Random Forest, XGBoost, LightGBM).
 
@@ -73,7 +74,7 @@ Explore deep learning (autoencoders, LSTMs) for anomaly detection.
 
 Deploy as a real-time fraud detection service (API).
 
-🛠️ Tech Stack
+<b>🛠️ Tech Stack</b>
 
 Languages: Python
 
@@ -81,7 +82,7 @@ Libraries: Pandas, NumPy, Scikit-learn, Matplotlib
 
 Concepts: Class imbalance handling, ROC analysis, interpretability vs generalization
 
-▶️ Usage
+<b>▶️ Usage</b>
 
 Install dependencies:
 
